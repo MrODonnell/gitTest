@@ -1,0 +1,40 @@
+This will generate a key
+(n.b. the $ represents the prompt, do not include it)
+$ ssh-keygen -t ed25519 -C "your_email@example.com"
+
+> Generating public/private ed25519 key pair.
+
+select enter on the next prompt to save the file at the default location
+
+enter an empty value to save the key with NO password
+
+input this to start the ssh agent
+$ eval `ssh-agent -s`
+
+this will show up on your screen (the process ID for the ssh-agent)
+> Agent pid 59566
+
+use this command to save the private key to your ssh-agent
+$ ssh-add ~/.ssh/id_ed25519
+
+now... add the public key to your git hub account
+You will need your github username and password
+
+$ clip < ~/.ssh/id_ed25519.pub
+
+sudo apt-get install xclip
+##########################################
+echo "alias clipboard='xclip -sel clip'" >> ~/.bashrc
+
+Log into github.com in your web browswer and log in using your u/n and pw
+click on the octocat in the upper right hand corner
+select "settings" 
+then select SSH and GPG keys
+
+Click New SSH key or Add SSH key.
+
+Paste your key into the field
+
+click on "add SSH key"
+
+You will then need to confirm your password
